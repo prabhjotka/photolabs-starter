@@ -13,7 +13,8 @@ const PhotoList = (props) => {
       urls={photo.urls}
       user={photo.user}
       location={photo.location}
-     
+      addPhototofav={props.addPhototofav}
+
       />
       )}
    
