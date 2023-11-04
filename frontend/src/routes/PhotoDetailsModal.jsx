@@ -2,14 +2,13 @@ import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
-import PhotoList from 'components/PhotoList';
 
 
 const PhotoDetailsModal = (props) => {
  
   return (
     <div className="photo-details-modal photo-details-modal__header">
-      <button className="photo-details-modal__close-button" >
+      <button className="photo-details-modal__close-button" onClick={() => props.closeDisplayModal(false)} >
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className="photo-list__item">

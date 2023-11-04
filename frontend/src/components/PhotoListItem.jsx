@@ -12,8 +12,8 @@ const PhotoListItem = (props) => {
     photoId={props.photoId}
     favourites={props.favourites}
   />
-  {/* TODO onclick in img */}
-     <img src={props.photo.urls.full} className="photo-list__image" />
+     <img src={props.photo.urls.full} className="photo-list__image" onClick={() => props.setDisplayModal(true)} />
+     
      <div className="photo-list__user-details">
      <img src={props.photo.urls.regular} className="photo-list__user-profile "/>
      <p className= "photo-list__user-info">{props.photo.user.name}</p>
