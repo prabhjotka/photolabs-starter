@@ -5,9 +5,12 @@ import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  return (
+  console.log("main photos",props.photos);
+
+   return (
     <ul className="photo-list">
    {props.photos.map((photo)=>
+
       <PhotoListItem 
       key={photo.id}
       photoId={photo.id}
@@ -15,6 +18,8 @@ const PhotoList = (props) => {
       toggleFavourites={props.toggleFavourites}
       favourites={props.favourites}
       setDisplayModal={props.setDisplayModal}
+      selectSinglePhotoDetails={props.selectSinglePhotoDetails}
+    
       />
       )}
    
