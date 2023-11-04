@@ -5,8 +5,6 @@ import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  console.log("main photos",props.photos);
-
    return (
     <ul className="photo-list">
    {props.photos.map((photo)=>
