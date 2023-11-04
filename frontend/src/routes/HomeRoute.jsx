@@ -10,7 +10,6 @@ const HomeRoute = (props) => {
   const [similarPhotos, setSimilarPhotos] = useState([]); 
   let similarPhotosArray =[];
     const selectSinglePhotoDetails = (photo) => {
-  
         setSelectedPhoto(photo);
         similarPhotosArray=Object.values(photo.similar_photos); 
         setSimilarPhotos(similarPhotosArray);
@@ -27,7 +26,7 @@ const HomeRoute = (props) => {
     setFavourites(prev => [...prev, photoId])
   }
 
-console.log(favourites);
+
   return (
     <div className="home-route">
      <TopNavigationBar 
