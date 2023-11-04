@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import '../styles/HomeRoute.scss';
 import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
-import  { useCallback, useState } from 'react';
 const HomeRoute = (props) => {
+  const [favourites, setFavourites] = useState([])
 
-  const [selected,setSelected]=useState(false);
-  const [favPhotoArray,setfavphotoArray]=useState([]);
-
-function addPhototofav(url)
-{
-  setfavphotoArray(()=>
-[...favPhotoArray,url]
-
-  )
-}
-  const toggle=()=>{
-    setSelected(selected===true?false:true);
+  const toggleFavourites = (photoId) => {
+    if (favourites.includes(photoId)) {
+      const copyOfFavourites = [...favourites].filter(favPhotoId => favPhotoId !== photoId);
+      setFavourites(copyOfFavourites);
+      return
     }
+    setFavourites(prev => [...prev, photoId])
+  }
+
+
   return (
     <div className="home-route">
      <TopNavigationBar 
      topics={props.topics} 
-     toggle={toggle}
-     selected={selected}
-     favPhotoArray={favPhotoArray}
+     isFavPhotoExist={favourites.length > 0}
      />
-       <PhotoList photos={props.photos}  toggle={toggle}
-     selected={selected}
-     addPhototofav={addPhototofav}
+    <PhotoList
+    photos={props.photos}
+    toggleFavourites={toggleFavourites} 
+    favourites={favourites} 
      />
+     
     </div>
   );
 };

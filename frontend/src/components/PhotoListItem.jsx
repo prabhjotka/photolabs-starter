@@ -1,31 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const[selected,setSelected]=useState(false);
-  function favphoto()
-  {
-    setSelected(selected===false?true:false);
-    props.addPhototofav(props.urls.full)
-  }
+  
   return(  
 <div className="photo-list__item">
   <PhotoFavButton 
-  selected={selected}
-  toggle={favphoto}
+    toggleFavourites={props.toggleFavourites}
+    photoId={props.photoId}
+    favourites={props.favourites}
   />
-     <img src={props.urls.full} className="photo-list__image"/>
+  {/* TODO onclick in img */}
+     <img src={props.photo.urls.full} className="photo-list__image" />
      <div className="photo-list__user-details">
-     <img src={props.urls.regular} className="photo-list__user-profile "/>
-     <p className= "photo-list__user-info">{props.user.name}</p>
-    <p className="photo-list__user-location photo-list__user-info">{props.location.city},
-    {props.location.country}</p>
+     <img src={props.photo.urls.regular} className="photo-list__user-profile "/>
+     <p className= "photo-list__user-info">{props.photo.user.name}</p>
+    <p className="photo-list__user-location photo-list__user-info">{props.photo.location.city},
+    {props.photo.location.country}</p>
     
     </div>
       </div>
-   
+  
   );
+
 }
 export default PhotoListItem;

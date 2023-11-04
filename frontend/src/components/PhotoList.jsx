@@ -2,7 +2,7 @@ import React from "react";
 
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
-import photos from "mocks/photos";
+
 
 const PhotoList = (props) => {
   return (
@@ -10,11 +10,10 @@ const PhotoList = (props) => {
    {props.photos.map((photo)=>
       <PhotoListItem 
       key={photo.id}
-      urls={photo.urls}
-      user={photo.user}
-      location={photo.location}
-      addPhototofav={props.addPhototofav}
-
+      photoId={photo.id}
+      photo={photo}
+      toggleFavourites={props.toggleFavourites}
+      favourites={props.favourites}
       />
       )}
    

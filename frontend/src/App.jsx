@@ -1,20 +1,16 @@
 import React from "react";
 import "./App.scss";
-import PhotoList from "components/PhotoList";
-import TopNavigation from "components/TopNavigationBar";
-import TopicList from "components/TopicList";
-import TopNavigationBar from "components/TopNavigationBar";
 import HomeRoute from "routes/HomeRoute";
 import photos from "mocks/photos";
 import topics from "mocks/topics";
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 const App = () => {
  return( 
     <>
      <div className="App">
-
-     <HomeRoute  topics={ topics} photos={ photos}/>
-   
+{/* TODO address photoDetails Modal */}
+     <HomeRoute  topics={ topics} photos={ photos} />
         </div>
   
     </>
