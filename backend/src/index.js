@@ -1,3 +1,5 @@
+// // PG database client/connection setup
+const DOT_ENV=require('dotenv').config();
 const PORT = process.env.PORT || 8001;
 const ENV = require("./environment");
 

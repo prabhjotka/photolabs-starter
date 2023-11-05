@@ -28,7 +28,6 @@ const PhotoDetailsModal = (props) => {
         </div>
       </div>
       <p>Similar photos</p>
-      
         <PhotoList
           photos={props.similarPhotos}
           toggleFavourites={props.toggleFavourites}
