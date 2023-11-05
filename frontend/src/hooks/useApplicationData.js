@@ -1,61 +1,6 @@
-//  import { useState } from "react";
-
-// const useApplicationData = function() {
-//   const [state, setState] = useState({
-
-//     similarPhotos: [], // Initialize with an empty array
-//     selectedPhoto: null, // Initialize as null
-//     favourites: [], // Initialize with an empty array
-//     displayModal: false, // Initialize as false
-//   });
-
-//   const selectSinglePhotoDetails = (photo) => {
-//     setState((prevstate) => ({
-//       ...prevstate,
-//       displayModal: true,
-//       selectedPhoto: photo,
-//       similarPhotos: Object.values(photo.similar_photos),
-
-//     }));
-
-//   }
-//   const toggleFavourites = (photoId) => {
-//     if (state.favourites.includes(photoId)) {
-//       const copyOfFavourites = state.favourites.filter(favPhotoId => favPhotoId !== photoId);
-//       setState((prevState) => ({
-//         ...prevState,
-//         favourites: copyOfFavourites,
-//       }));
-//     } else {
-
-//       setState((prevState) => ({
-//         ...prevState,
-//         favourites: [...prevState.favourites, photoId],
-//       }));
-
-//     }
-//   }
-
-
-//   const closeDisplayModal = () => {
-//     setState((prevState) => ({
-//       ...prevState,
-//       displayModal: false, // Close the modal
-//     }));
-//   };
-//   return {
-//     state,
-//     toggleFavourites,
-//     selectSinglePhotoDetails,
-//     closeDisplayModal
-//   }
-
-// }
-// export default useApplicationData;
-
-/* insert app levels actions below */
 import { useReducer } from "react";
 import { useEffect } from "react";
+
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
@@ -63,6 +8,7 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
   CLOSE_MODAL: 'CLOSE_MODAL'
 }
 
@@ -77,7 +23,6 @@ function reducer(state, action) {
         favourites: updatedFavourites,
       };
 
-      
     case ACTIONS.FAV_PHOTO_REMOVED:
       const removedFavPhotoId = action.payload;
       const filteredFavourites = state.favourites.filter((favPhotoId) => favPhotoId !== removedFavPhotoId);
@@ -86,22 +31,29 @@ function reducer(state, action) {
         favourites: filteredFavourites,
       };
     case ACTIONS.SET_PHOTO_DATA:
-      const  photo_data=action.payload;
+      const photo_data = action.payload;
       return {
         ...state,
-        photoData:photo_data
+        photoData: photo_data
       };
     case ACTIONS.SET_TOPIC_DATA:
-      const topics_data=action.payload;
+      const topics_data = action.payload;
       return {
         ...state,
-        topicData:topics_data
+        topicData: topics_data
       };
     // case SELECT_PHOTO:
     //   return {
     //     ...state,
     //     // Insert logic to select a photo using action.payload
-    //   };
+    //};
+     case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      const category_photos=action.payload
+        return {
+          ...state,
+          category_photos:category_photos
+          
+        };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       const photo = action.payload;
       return {
@@ -110,12 +62,12 @@ function reducer(state, action) {
         selectedPhoto: photo,
         similarPhotos: Object.values(photo.similar_photos)
       };
-    
-      case  ACTIONS.CLOSE_MODAL:
+
+    case ACTIONS.CLOSE_MODAL:
       return {
         ...state,
         displayModal: false
-        
+
       };
     default:
       throw new Error(
@@ -124,7 +76,7 @@ function reducer(state, action) {
   }
 }
 
-
+const topic_id=1;
 const useApplicationData = function() {
 
   useEffect(() => {
@@ -138,14 +90,19 @@ const useApplicationData = function() {
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, []);
-
+  useEffect(() => {
+    fetch(`/api/topics/photos/${topic_id}`)
+      .then((response) => response.json())
+      .then((data) =>dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
+  }, []);
   const [state, dispatch] = useReducer(reducer, {
     similarPhotos: [],
     selectedPhoto: null,
     favourites: [],
     displayModal: false,
     photoData: [],
-    topicData: []
+    topicData: [],
+    category_photos:[]
   });
 
   const selectSinglePhotoDetails = (photo) => {
