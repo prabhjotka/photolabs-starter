@@ -23,7 +23,7 @@ cd backend
 npm start
 ```
 
-!["Landing page with photo loads from backend"]("https://github.com/prabhjotka/photolabs-starter/blob/main/docs/Landing_page.png?raw=true")
+!["Landing page with photo loads from backend"](https://github.com/prabhjotka/photolabs-starter/blob/main/docs/Landing_page.png?raw=true)
 
 !["Load photos as per Topic selected"](https://github.com/prabhjotka/photolabs-starter/blob/main/docs/display_topic_wise.png?raw=true)
 
