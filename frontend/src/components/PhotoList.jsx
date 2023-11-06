@@ -1,11 +1,15 @@
+/**
+ * PhotoList.jsx
+ * 
+ * This component represents a list of photos. It maps through the provided photo data
+ * and renders individual photo items using the PhotoListItem component.
+ */
 import React from "react";
-
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  console.log("props", props);
   return props.photos && (
 
     <ul className="photo-list">
