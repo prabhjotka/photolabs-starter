@@ -10,6 +10,7 @@ const TopicList = (props) => {
       <TopicListItem 
       key={topic.id}
       { ... topic }
+      selectTopicId={props.selectTopicId}
       />
       )}
     </div>

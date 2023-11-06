@@ -5,33 +5,13 @@ import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
-  console.log(props.state.favourites);
-  // const [favourites, setFavourites] = useState([])
-  // const [displayModal, setDisplayModal] = useState(false);
-  //   const [selectedPhoto, setSelectedPhoto] = useState(null); 
-  // const [similarPhotos, setSimilarPhotos] = useState([]); 
-  // let similarPhotosArray =[];
-  //   const selectSinglePhotoDetails = (photo) => {
-  //       setSelectedPhoto(photo);
-  //       similarPhotosArray=Object.values(photo.similar_photos); 
-  //       setSimilarPhotos(similarPhotosArray);
-  //       setDisplayModal(true);
-      
-  //        } 
-  // const toggleFavourites = (photoId) => {
-  //   if (favourites.includes(photoId)) {
-  //     const copyOfFavourites = [...favourites].filter(favPhotoId => favPhotoId !== photoId);
-  //     setFavourites(copyOfFavourites);
-  //     return
-  //   }
-  //   setFavourites(prev => [...prev, photoId])
-  // }
-
-
+ 
+  
   return (
     <div className="home-route">
      <TopNavigationBar 
      topics={props.topics} 
+     selectTopicId={props.selectTopicId}
      isFavPhotoExist={props.state.favourites.length > 0}
      />
     <PhotoList

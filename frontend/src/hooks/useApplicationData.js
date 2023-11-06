@@ -9,6 +9,7 @@ export const ACTIONS = {
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  SELECT_PHOTO_BY_TOPIC_ID: 'SELECT_PHOTO_BY_TOPIC_ID',
   CLOSE_MODAL: 'CLOSE_MODAL'
 }
 
@@ -42,18 +43,17 @@ function reducer(state, action) {
         ...state,
         topicData: topics_data
       };
-    // case SELECT_PHOTO:
-    //   return {
-    //     ...state,
-    //     // Insert logic to select a photo using action.payload
-    //};
-     case ACTIONS.GET_PHOTOS_BY_TOPICS:
-      const category_photos=action.payload
-        return {
-          ...state,
-          category_photos:category_photos
-          
-        };
+    case ACTIONS.SELECT_PHOTO_BY_TOPIC_ID:
+      return {
+        ...state,
+        topic_id: action.payload
+      };
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
+      const photo_by_topics = action.payload;
+      return {
+        ...state,
+        photoData:photo_by_topics
+      };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       const photo = action.payload;
       return {
@@ -76,8 +76,19 @@ function reducer(state, action) {
   }
 }
 
-const topic_id=1;
+
 const useApplicationData = function() {
+
+  const [state, dispatch] = useReducer(reducer, {
+    similarPhotos: [],
+    selectedPhoto: null,
+    favourites: [],
+    displayModal: false,
+    photoData: [],
+    topicData: [],
+    category_photos: [],
+    topic_id: null
+  });
 
   useEffect(() => {
     fetch("/api/photos")
@@ -91,19 +102,12 @@ const useApplicationData = function() {
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, []);
   useEffect(() => {
-    fetch(`/api/topics/photos/${topic_id}`)
+    fetch(`/api/topics/photos/${state.topic_id}`)
       .then((response) => response.json())
       .then((data) =>dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
-  }, []);
-  const [state, dispatch] = useReducer(reducer, {
-    similarPhotos: [],
-    selectedPhoto: null,
-    favourites: [],
-    displayModal: false,
-    photoData: [],
-    topicData: [],
-    category_photos:[]
-  });
+  }, [state.topic_id]);
+
+
 
   const selectSinglePhotoDetails = (photo) => {
     dispatch({
@@ -111,6 +115,13 @@ const useApplicationData = function() {
       payload: photo,
     });
   }
+  const selectTopicId = (topicid) => {
+    dispatch({
+      type: 'SELECT_PHOTO_BY_TOPIC_ID',
+      payload: topicid,
+    });
+  }
+
 
   const toggleFavourites = (photoId) => {
     if (state.favourites.includes(photoId)) {
@@ -137,6 +148,7 @@ const useApplicationData = function() {
     state,
     toggleFavourites,
     selectSinglePhotoDetails,
+    selectTopicId,
     closeDisplayModal
   }
 }
