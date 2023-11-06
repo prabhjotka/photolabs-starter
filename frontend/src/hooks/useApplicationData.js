@@ -13,7 +13,6 @@ export const ACTIONS = {
   CLOSE_MODAL: 'CLOSE_MODAL'
 }
 
-
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
@@ -43,17 +42,17 @@ function reducer(state, action) {
         ...state,
         topicData: topics_data
       };
-    case ACTIONS.SELECT_PHOTO_BY_TOPIC_ID:
-      return {
-        ...state,
-        topic_id: action.payload
-      };
-    case ACTIONS.GET_PHOTOS_BY_TOPICS:
-      const photo_by_topics = action.payload;
-      return {
-        ...state,
-        photoData:photo_by_topics
-      };
+    // case ACTIONS.SELECT_PHOTO_BY_TOPIC_ID:
+    //   return {
+    //     ...state,
+    //     topic_id: action.payload
+    //   };
+    // case ACTIONS.GET_PHOTOS_BY_TOPICS:
+    //   const photo_by_topics = action.payload;
+    //   return {
+    //     ...state,
+    //     photoData: photo_by_topics
+    //   };
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       const photo = action.payload;
       return {
@@ -80,14 +79,14 @@ function reducer(state, action) {
 const useApplicationData = function() {
 
   const [state, dispatch] = useReducer(reducer, {
+    photoData: [],
+    topicData: [],
     similarPhotos: [],
     selectedPhoto: null,
     favourites: [],
     displayModal: false,
-    photoData: [],
-    topicData: [],
     category_photos: [],
-    topic_id: null
+
   });
 
   useEffect(() => {
@@ -101,12 +100,16 @@ const useApplicationData = function() {
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
   }, []);
-  useEffect(() => {
-    fetch(`/api/topics/photos/${state.topic_id}`)
+  const fetchPhotosByTopic = function(topic_id) {
+    fetch(`/api/topics/photos/${topic_id}`)
       .then((response) => response.json())
-      .then((data) =>dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
-  }, [state.topic_id]);
-
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+  }
+  // useEffect(() => {
+  //   fetch(`/api/topics/photos/${state.topic_id}`)
+  //     .then((response) => response.json())
+  //     .then((data) =>dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
+  // }, [state.topic_id]);
 
 
   const selectSinglePhotoDetails = (photo) => {
@@ -115,12 +118,12 @@ const useApplicationData = function() {
       payload: photo,
     });
   }
-  const selectTopicId = (topicid) => {
-    dispatch({
-      type: 'SELECT_PHOTO_BY_TOPIC_ID',
-      payload: topicid,
-    });
-  }
+  // const selectTopicId = (topicid) => {
+  //   dispatch({
+  //     type: 'SELECT_PHOTO_BY_TOPIC_ID',
+  //     payload: topicid,
+  //   });
+  // }
 
 
   const toggleFavourites = (photoId) => {
@@ -148,7 +151,7 @@ const useApplicationData = function() {
     state,
     toggleFavourites,
     selectSinglePhotoDetails,
-    selectTopicId,
+    fetchPhotosByTopic,
     closeDisplayModal
   }
 }

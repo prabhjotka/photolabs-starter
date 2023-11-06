@@ -7,7 +7,7 @@ import PhotoFavButton from 'components/PhotoFavButton';
 
 
 const PhotoDetailsModal = (props) => {
-  
+  console.log("props in modal",props);
   return (
     <div className="photo-details-modal photo-details-modal__header">
       <button className="photo-details-modal__close-button" onClick={() => props.closeDisplayModal()}>

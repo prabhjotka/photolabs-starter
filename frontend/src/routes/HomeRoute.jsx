@@ -5,13 +5,12 @@ import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
- 
-  
+
   return (
     <div className="home-route">
      <TopNavigationBar 
      topics={props.topics} 
-     selectTopicId={props.selectTopicId}
+     fetchPhotosByTopic ={props.fetchPhotosByTopic }
      isFavPhotoExist={props.state.favourites.length > 0}
      />
     <PhotoList

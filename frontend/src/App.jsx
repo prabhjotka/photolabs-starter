@@ -7,13 +7,13 @@ const App = () => {
   const{state,
     toggleFavourites,
     selectSinglePhotoDetails,
-    selectTopicId,
+    fetchPhotosByTopic ,
     closeDisplayModal}=useApplicationData();
  return( 
      <div className="App">
-            <HomeRoute   state={state} topics={state.topicData} photos={state.photoData} toggleFavourites={toggleFavourites} 
+            <HomeRoute   topics={state.topicData} photos={state.photoData}  state={state} toggleFavourites={toggleFavourites} 
              selectSinglePhotoDetails={selectSinglePhotoDetails} 
-             closeDisplayModal={closeDisplayModal} selectTopicId={selectTopicId}
+             closeDisplayModal={closeDisplayModal} fetchPhotosByTopic ={fetchPhotosByTopic }
              /> 
              
     </div>
