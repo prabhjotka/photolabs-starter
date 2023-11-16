@@ -11,12 +11,13 @@ import TopNavigationBar from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 const HomeRoute = (props) => {
-
+console.log("in home",props)
   return (
     <div className="home-route">
       <TopNavigationBar
         topics={props.topics}
         fetchPhotosByTopic={props.fetchPhotosByTopic}
+        fetchPhotosBySearch={props.fetchPhotosBySearch}
         isFavPhotoExist={props.state.favourites.length > 0}
       />
       <PhotoList
@@ -24,8 +25,9 @@ const HomeRoute = (props) => {
         toggleFavourites={props.toggleFavourites}
         favourites={props.state.favourites}
         selectSinglePhotoDetails={props.selectSinglePhotoDetails}
+
       />
-      {props.state.displayModal && (
+      {/* {props.state.displayModal && (
         <PhotoDetailsModal
           toggleFavourites={props.toggleFavourites}
           favourites={props.state.favourites}
@@ -33,7 +35,7 @@ const HomeRoute = (props) => {
           similarPhotos={props.state.similarPhotos}
           closeDisplayModal={props.closeDisplayModal}
         />
-      )}
+      )} */}
 
     </div>
   );

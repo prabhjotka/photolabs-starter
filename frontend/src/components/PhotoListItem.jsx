@@ -10,8 +10,9 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
+  console.log(props)
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item photo-card">
       <PhotoFavButton
         toggleFavourites={props.toggleFavourites}
         photoId={props.photoId}

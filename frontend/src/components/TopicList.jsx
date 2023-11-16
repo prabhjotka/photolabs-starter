@@ -18,6 +18,7 @@ const TopicList = (props) => {
           key={topic.id}
           {...topic}
           fetchPhotosByTopic={props.fetchPhotosByTopic}
+          fetchPhotosBySearch={props.fetchPhotosBySearch}
         />
       )}
     </div>

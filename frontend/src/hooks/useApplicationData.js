@@ -109,9 +109,19 @@ const useApplicationData = function() {
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.GET_PHOTOS_BY_TOPICS, payload: data }));
   }
-
-
+  const fetchPhotosBySearch = function (searchParameters) {
+    const apiUrl = `/api/search_photos?search=${searchParameters}`;
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+      });
+  };
+  
+  
+  
+  
   const selectSinglePhotoDetails = (photo) => {
+    console.log(photo)
     dispatch({
       type: 'DISPLAY_PHOTO_DETAILS',
       payload: photo,
@@ -120,6 +130,7 @@ const useApplicationData = function() {
 
 
   const toggleFavourites = (photoId) => {
+    console.log(photoId)
     if (state.favourites.includes(photoId)) {
       dispatch({
         type: 'FAV_PHOTO_REMOVED',
@@ -145,6 +156,7 @@ const useApplicationData = function() {
     toggleFavourites,
     selectSinglePhotoDetails,
     fetchPhotosByTopic,
+    fetchPhotosBySearch,
     closeDisplayModal
   }
 }
