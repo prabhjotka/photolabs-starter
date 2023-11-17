@@ -76,6 +76,7 @@ function reducer(state, action) {
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
       );
+      
   }
 }
 
@@ -85,10 +86,10 @@ const useApplicationData = function() {
     photoData: [],
     topicData: [],
     similarPhotos: [],
-    selectedPhoto: null,
+    selectedPhoto: [],
     favourites: [],
     displayModal: false,
-    category_photos: [],
+    
 
   });
 
@@ -121,7 +122,6 @@ const useApplicationData = function() {
   
   
   const selectSinglePhotoDetails = (photo) => {
-    console.log(photo)
     dispatch({
       type: 'DISPLAY_PHOTO_DETAILS',
       payload: photo,
@@ -130,7 +130,6 @@ const useApplicationData = function() {
 
 
   const toggleFavourites = (photoId) => {
-    console.log(photoId)
     if (state.favourites.includes(photoId)) {
       dispatch({
         type: 'FAV_PHOTO_REMOVED',

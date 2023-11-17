@@ -13,7 +13,7 @@ import PhotoFavButton from 'components/PhotoFavButton';
 
 
 const PhotoDetailsModal = (props) => {
-  console.log("in photodetail",props)
+
   return (
     <div className="photo-details-modal photo-details-modal__header">
       <button className="photo-details-modal__close-button" onClick={() => props.closeDisplayModal()}>
@@ -39,6 +39,7 @@ const PhotoDetailsModal = (props) => {
         photos={props.similarPhotos}
         toggleFavourites={props.toggleFavourites}
         favourites={props.favourites}
+
        
       />
     </div>

@@ -10,7 +10,6 @@ import PhotoListItem from "./PhotoListItem";
 
 
 const PhotoList = (props) => {
-  console.log("in photolist",props)
   return props.photos && (
 
     <ul className="photo-list photo-card">
@@ -22,7 +21,6 @@ const PhotoList = (props) => {
           photo={photo}
           toggleFavourites={props.toggleFavourites}
           favourites={props.favourites}
-          //setDisplayModal={props.setDisplayModal}
           selectSinglePhotoDetails={props.selectSinglePhotoDetails}
 
         />

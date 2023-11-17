@@ -13,9 +13,13 @@ const App = () => {
     closeDisplayModal } = useApplicationData();
   return (
     <div className="App">
-      <HomeRoute topics={state.topicData} photos={state.photoData} state={state} toggleFavourites={toggleFavourites}
+      <HomeRoute
+       topics={state.topicData}
+       photos={state.photoData} state={state}
+        toggleFavourites={toggleFavourites}
         selectSinglePhotoDetails={selectSinglePhotoDetails}
-        closeDisplayModal={closeDisplayModal} fetchPhotosByTopic={fetchPhotosByTopic}
+        closeDisplayModal={closeDisplayModal} 
+        fetchPhotosByTopic={fetchPhotosByTopic}
         fetchPhotosBySearch={fetchPhotosBySearch}
       />
  {state.displayModal && (
