@@ -15,7 +15,8 @@ const App = () => {
     <div className="App">
       <HomeRoute
        topics={state.topicData}
-       photos={state.photoData} state={state}
+       photos={state.photoData} 
+       state={state}
         toggleFavourites={toggleFavourites}
         selectSinglePhotoDetails={selectSinglePhotoDetails}
         closeDisplayModal={closeDisplayModal} 
@@ -26,8 +27,7 @@ const App = () => {
         <PhotoDetailsModal
           toggleFavourites={toggleFavourites}
           favourites={state.favourites}
-          photo={state.selectedPhoto}
-          similarPhotos={state.similarPhotos}
+          photo={state.modalPhotoData}
           closeDisplayModal={closeDisplayModal}
         />
       )}

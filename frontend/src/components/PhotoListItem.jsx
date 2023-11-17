@@ -10,7 +10,12 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  
+
+  const handlePhotoClick = () => {
+    props.selectSinglePhotoDetails(props.photo)
+
+  };
+
   return (
     <div className="photo-list__item photo-card">
       <PhotoFavButton
@@ -18,7 +23,7 @@ const PhotoListItem = (props) => {
         photoId={props.photoId}
         favourites={props.favourites}
       />
-      <img src={props.photo.urls.full} className="photo-list__image" onClick={() => props.selectSinglePhotoDetails(props.photo)} />
+      <img src={props.photo.urls.full} className="photo-list__image" onClick={handlePhotoClick} />
       <div className="photo-list__user-details">
         <img src={props.photo.urls.regular} className="photo-list__user-profile " />
         <p className="photo-list__user-info">{props.photo.user.name}</p>

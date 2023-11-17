@@ -62,8 +62,8 @@ function reducer(state, action) {
       return {
         ...state,
         displayModal: true,
-        selectedPhoto: photo,
-        similarPhotos: Object.values(photo.similar_photos)
+        modalPhotoData: photo,
+        
       };
 
     case ACTIONS.CLOSE_MODAL:
@@ -78,15 +78,14 @@ function reducer(state, action) {
       );
       
   }
-}
+};
 
 const useApplicationData = function() {
 
   const [state, dispatch] = useReducer(reducer, {
     photoData: [],
     topicData: [],
-    similarPhotos: [],
-    selectedPhoto: [],
+    modalPhotoData: [],
     favourites: [],
     displayModal: false,
     
